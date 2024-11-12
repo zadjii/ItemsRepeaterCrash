@@ -42,7 +42,7 @@
                     </DataTemplate>
 
                     <DataTemplate x:Key="ListItemTemplate" x:DataType="local:ListItemViewModel">
-                        <ListViewItem
+                        <ItemContainer
                             MinHeight="40">
                             <Grid ColumnSpacing="12">
                                 <Grid.ColumnDefinitions>
@@ -90,7 +90,7 @@
                                         Layout="{StaticResource HorizontalStackLayout}" />
                                 </StackPanel>
                             </Grid>
-                        </ListViewItem>
+                        </ItemContainer>
                     </DataTemplate>
                 </ResourceDictionary>
             </Page.Resources>
@@ -98,11 +98,10 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
 
-                <ListView
+                <ItemsView
                     x:Name="ItemsList"
                     Grid.Column="0"
                     Margin="4,0,0,0"
-                    IsItemClickEnabled="True"
                     ItemTemplate="{StaticResource ListItemTemplate}"
                     ItemsSource="{x:Bind Items, Mode=OneWay}" />
 
