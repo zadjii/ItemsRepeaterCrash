@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="ItemsRepeaterCrash.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ItemsRepeaterCrash"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Frame>
+        <Page>
+
+            <Page.Resources>
+                <ResourceDictionary>
+
+                    <StackLayout
+                x:Name="HorizontalStackLayout"
+                Orientation="Horizontal"
+                Spacing="8" />
+
+                    <DataTemplate x:Key="TagTemplate" x:DataType="local:TagViewModel">
+                        <Border
+                    Padding="4,2,4,2"
+                    VerticalAlignment="Center"
+                    Background="{x:Bind BackgroundBrush, Mode=OneWay}"
+                    BorderBrush="{x:Bind BorderBrush, Mode=OneWay}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- <ContentControl
+                            Width="12"
+                            Height="12"
+                            Margin="0,0,4,0"
+                            Content="{x:Bind IcoElement, Mode=OneWay}"
+                            Visibility="{x:Bind HasIcon, Mode=OneWay}" /> -->
+                                <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="10"
+                            Foreground="{x:Bind TextBrush, Mode=OneWay}"
+                            Text="{x:Bind Text, Mode=OneWay}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="ListItemTemplate" x:DataType="local:ListItemViewModel">
+                        <ListViewItem
+                    MinHeight="40">
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- <Viewbox
+                            Width="20"
+                            Height="20"
+                            VerticalAlignment="Center">
+                            <ContentControl
+                                Width="24"
+                                Height="24"
+                                Content="{x:Bind IcoElement, Mode=OneWay}" />
+                        </Viewbox> -->
+
+                                <StackPanel
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                                    <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{x:Bind Title, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis" />
+                                    <TextBlock
+                                Margin="4,0,0,0"
+                                VerticalAlignment="Center"
+                                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                Style="{StaticResource CaptionTextBlockStyle}"
+                                TextTrimming="CharacterEllipsis">
+                                <Run Text=" - " />
+                                <Run Text="{x:Bind Subtitle, Mode=OneWay}" />
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            Visibility="{x:Bind HasTags}">
+                                    <ItemsRepeater
+                                ItemTemplate="{StaticResource TagTemplate}"
+                                ItemsSource="{x:Bind Tags}"
+                                Layout="{StaticResource HorizontalStackLayout}" />
+                                </StackPanel>
+                            </Grid>
+                        </ListViewItem>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </Page.Resources>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
+
+                <ListView
+                x:Name="ItemsList"
+                Grid.Column="0"
+                Margin="4,0,0,0"
+                IsItemClickEnabled="True"
+                ItemTemplate="{StaticResource ListItemTemplate}"
+                ItemsSource="{x:Bind Items, Mode=OneWay}" />
+
+            </StackPanel>
+        </Page>
+    </Frame>
+    
+</Window>
