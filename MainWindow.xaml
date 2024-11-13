@@ -79,16 +79,12 @@
                                 <Run Text="{x:Bind Subtitle, Mode=OneWay}" />
                                     </TextBlock>
                                 </StackPanel>
-                                <StackPanel
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal"
-                                    Visibility="{x:Bind HasTags}">
-                                    <ItemsRepeater
+                                <ItemsRepeater
                                         ItemTemplate="{StaticResource TagTemplate}"
                                         ItemsSource="{x:Bind Tags}"
+                                    Grid.Column="2"
+                                        Visibility="{x:Bind HasTags}"
                                         Layout="{StaticResource HorizontalStackLayout}" />
-                                </StackPanel>
                             </Grid>
                         </ListViewItem>
                     </DataTemplate>
